@@ -1,10 +1,11 @@
-
 <p-fileUpload
-    mode="basic"
-    chooseLabel="Seleccionar Archivo"
-    chooseIcon="pi pi-upload"
-    name="demo[]"
-    url="https://www.primefaces.org/cdn/api/upload.php"
-    accept="image/*"
-    maxFileSize="1000000"
-    (onUpload)="onUpload($event)" />
+  mode="basic"
+  accept=".csv"
+  [chooseLabel]="buttonLabel"
+  [uploadLabel]="uploadLabel"
+  chooseIcon="Convertir CSV"
+  name="file"
+  maxFileSize="1000000"
+  (uploadHandler)="onFileSelect($event)"
+  [customUpload]="true"
+/>

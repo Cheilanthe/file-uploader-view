@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FileUploadModule } from 'primeng/fileupload';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { FileUploadModule, FileUploadHandlerEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-upload-file',
@@ -9,7 +9,16 @@ import { FileUploadModule } from 'primeng/fileupload';
   styleUrl: './app-upload-file.component.scss',
 })
 export class AppUploadFileComponent {
-  public onUpload(event: any) {
-    console.log('File uploaded:', event);
+  @Output()
+  fileSelected:EventEmitter<File> = new EventEmitter<File>();
+  @Input()
+  buttonLabel: string = '';
+  @Input()
+  uploadLabel: string = '';
+
+
+  onFileSelect(event: FileUploadHandlerEvent): void {
+    const file = event.files[0];
+    this.fileSelected.emit(file);
   }
 }
